@@ -75,11 +75,11 @@ pub mod nft_escrow {
     
                 token::transfer(
                     CpiContext::new(
-                        token_program_info.clone(),  // clone for each transfer
+                        token_program_info.clone(),
                         token::Transfer {
                             from: user_nft_account_info.clone(),
                             to: vault_nft_account_info.clone(),
-                            authority: owner_account_info.clone(), // clone for each transfer
+                            authority: ctx.accounts.owner.to_account_info(), // this is guaranteed to be Signer
                         },
                     ),
                     1,
